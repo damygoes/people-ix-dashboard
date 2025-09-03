@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  department  String
+  location    String
+  hireDate    DateTime
+  salary      Float
+  performance Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([department])
+  @@index([location])
+  @@index([hireDate])
+  @@map("employees")
+}
+
+model Department {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  @@map("departments")
+}
+
+model Location {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  country   String
+  timezone  String
+  createdAt DateTime @default(now())
+
+  @@map("locations")
+}
