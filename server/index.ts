@@ -1,9 +1,11 @@
 
-import { departmentRouter } from "./routers/department";
-import { router } from "./trpc";
+import { chartRouter } from "./routers/chart";
+import { filterRouter } from "./routers/filter";
+import { trpcRouter } from "./trpc";
 
-export const appRouter = router({
-    department: departmentRouter
+export const appRouter = trpcRouter({
+    chart: chartRouter,
+    filter: filterRouter
 })
 
 export type AppRouter = typeof appRouter;
