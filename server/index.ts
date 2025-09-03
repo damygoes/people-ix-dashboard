@@ -1,8 +1,9 @@
-import { userRouter } from "./routers/user";
+
+import { departmentRouter } from "./routers/department";
 import { router } from "./trpc";
 
 export const appRouter = router({
-    user: userRouter
+    department: departmentRouter
 })
 
 export type AppRouter = typeof appRouter;
