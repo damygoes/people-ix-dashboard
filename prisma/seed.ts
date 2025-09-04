@@ -45,7 +45,7 @@ async function main() {
     const employees = []
 
     for (let i = 1; i <= 1200; i++) {
-        const hireDate = new Date(2020 + Math.random() * 4, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28))
+        const hireDate = new Date(2025 + Math.random() * 4, Math.floor(Math.random() * 12), Math.floor(Math.random() * 31))
 
         employees.push({
             name: `Employee ${i}`,
