@@ -25,8 +25,8 @@ export class EmployeeRepository {
         ])
 
         return {
-            departments: [{ value: 'all', label: 'All Departments' }, ...departments.map(d => ({ value: d.department, label: d.department }))],
-            locations: [{ value: 'all', label: 'All Locations' }, ...locations.map(l => ({ value: l.location, label: l.location }))],
+            departments: departments.map(d => ({ value: d.department, label: d.department })),
+            locations: locations.map(l => ({ value: l.location, label: l.location })),
             dateRange: {
                 min: dateRange._min.hireDate?.toISOString().split('T')[0] ?? '',
                 max: dateRange._max.hireDate?.toISOString().split('T')[0] ?? ''

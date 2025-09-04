@@ -2,6 +2,7 @@
 
 import { trpc } from "@/app/_trpc/trpcClient";
 import { Button } from "@/components/ui/button";
+import { GlobalFilters } from "@/features/filters/components/GlobalFilters";
 import { toast } from "sonner";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <GlobalFilters />
       <h1> Welcome Home</h1>
       <Button
         variant="outline"
