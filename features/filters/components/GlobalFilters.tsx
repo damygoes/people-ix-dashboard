@@ -47,14 +47,14 @@ export const GlobalFilters: FC = () => {
     }
 
     return (
-        <Card className="mb-6 w-full">
+        <Card className="w-full lg:flex-col lg:h-full">
             <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
+                <CardTitle className="flex flex-col justify-start items-start gap-4 xl:flex-row lg:items-center lg:justify-between">
+                    <div className="flex items-center space-x-2 w-full ">
                         <Filter className="w-5 h-5" />
                         <span>Global Filters</span>
                     </div>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 justify-end w-full">
                         <Button variant="outline" size="sm" onClick={handleShare}>
                             <Share className="w-4 h-4 mr-2" />
                             Share
@@ -67,7 +67,7 @@ export const GlobalFilters: FC = () => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 w-full">
+                <div className="grid grid-cols-1 gap-4 w-full">
                     <DatePickerField label="Start Date" filterKey="dateFrom" />
                     <DatePickerField label="End Date" filterKey="dateTo" />
                     <DepartmentSelect options={options?.departments ?? []} />
@@ -77,3 +77,5 @@ export const GlobalFilters: FC = () => {
         </Card>
     )
 }
+
+//

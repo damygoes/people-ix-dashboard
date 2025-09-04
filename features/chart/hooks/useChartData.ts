@@ -50,7 +50,7 @@ export const useChartData = (
     return {
         data: chartState?.data ?? null,
         loading: chartState?.loading ?? isLoading,
-        error: chartState?.error ?? error?.message ?? null,
+        error: chartState?.error ?? error?.message ?? undefined,
         metadata: data?.metadata,
         refetch,
     }

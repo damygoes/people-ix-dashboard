@@ -1,11 +1,12 @@
-import type { ChartData } from '@/types/chart'
-import { create } from 'zustand'
+import type { ChartData } from "@/types/chart"
+import { create } from "zustand"
 
+// Each chart keeps its own data, loading, error, and local filters
 interface ChartInfo {
     data: ChartData | null
     loading: boolean
     error: string | null
-    localFilters: Record<string, string>
+    localFilters: Record<string, string | string[]>
 }
 
 interface ChartState {
@@ -14,11 +15,12 @@ interface ChartState {
 
 interface ChartStore {
     charts: ChartState
+
     initChart: (chartId: string) => void
     updateChartData: (chartId: string, data: ChartData) => void
     setChartLoading: (chartId: string, loading: boolean) => void
     setChartError: (chartId: string, error: string | null) => void
-    updateLocalFilters: (chartId: string, filters: Record<string, string>) => void
+    updateLocalFilters: (chartId: string, filters: Record<string, string | string[]>) => void
     clearLocalFilters: (chartId: string) => void
 }
 
