@@ -1,8 +1,6 @@
 import type { ChartData } from '@/types/chart'
 import { create } from 'zustand'
 
-export type ChartType = 'bar' | 'line' | 'pie'
-
 interface ChartInfo {
     data: ChartData | null
     loading: boolean

@@ -24,6 +24,8 @@ export interface ChartResponse {
         totalRecords: number
         appliedFilters: FilterInput
         generatedAt: string
-        chartType: 'bar' | 'line' | 'pie'
+        chartType: ChartType
     }
 }
+
+export type ChartType = 'bar' | 'line' | 'pie'
