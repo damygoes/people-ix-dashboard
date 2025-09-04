@@ -1,4 +1,4 @@
-import QueryProvider from "@/components/providers/QueryProvider";
+import QueryProvider from "@/app/_trpc/QueryProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
