@@ -1,13 +1,7 @@
 import type { ChartData, ChartType } from "@/types/chart"
-import {
-    ChartConfiguration,
-    Chart as ChartJS,
-    ChartType as ChartJSType,
-    ChartOptions,
-} from "chart.js"
+import { ChartConfiguration } from "chart.js"
 
-
-const baseOptions: ChartOptions = {
+const baseOptions: ChartConfiguration["options"] = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -16,18 +10,12 @@ const baseOptions: ChartOptions = {
     },
 }
 
-export interface ChartConfig {
-    type: ChartJSType
-    data: ChartData
-    options: ChartConfiguration["options"]
-}
-
 abstract class ChartStrategy {
-    abstract createConfig(data: ChartData): ChartConfig
+    abstract createConfig(data: ChartData): ChartConfiguration
 }
 
 class BarChartStrategy extends ChartStrategy {
-    createConfig(data: ChartData): ChartConfig {
+    createConfig(data: ChartData): ChartConfiguration {
         return {
             type: "bar",
             data,
@@ -45,7 +33,7 @@ class BarChartStrategy extends ChartStrategy {
 }
 
 class LineChartStrategy extends ChartStrategy {
-    createConfig(data: ChartData): ChartConfig {
+    createConfig(data: ChartData): ChartConfiguration {
         return {
             type: "line",
             data,
@@ -72,14 +60,14 @@ class LineChartStrategy extends ChartStrategy {
 }
 
 class PieChartStrategy extends ChartStrategy {
-    createConfig(data: ChartData): ChartConfig {
+    createConfig(data: ChartData): ChartConfiguration {
         return {
             type: "pie",
             data,
             options: {
                 ...baseOptions,
                 plugins: {
-                    ...baseOptions.plugins,
+                    ...baseOptions?.plugins,
                     legend: { position: "right" },
                 },
             },
@@ -94,25 +82,11 @@ export class ChartFactory {
         pie: new PieChartStrategy(),
     }
 
-    createChart(type: ChartType, data: ChartData): ChartConfig {
+    createChart(type: ChartType, data: ChartData): ChartConfiguration {
         const strategy = this.strategies[type]
         if (!strategy) {
             throw new Error(`Unsupported chart type: ${type}`)
         }
         return strategy.createConfig(data)
     }
-
-    getSupportedTypes(): ChartType[] {
-        return Object.keys(this.strategies) as ChartType[]
-    }
-
-    // Allow injecting new strategies (extensibility)
-    registerStrategy(type: ChartType, strategy: ChartStrategy) {
-        this.strategies[type] = strategy
-    }
-}
-
-export function registerChartDefaults() {
-    ChartJS.defaults.color = "#111"
-    ChartJS.defaults.font.family = "Inter, sans-serif"
 }
