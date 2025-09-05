@@ -1,3 +1,5 @@
+"use client"
+
 import { useIndividualChartFilters } from "@/features/filters/hooks/useIndividualChartFilters"
 import { FC, useMemo } from "react"
 import { useChartData } from "../hooks/useChartData"

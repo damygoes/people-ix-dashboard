@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import type { ChartData, ChartType } from "@/types/chart"
 import {

@@ -1,5 +1,3 @@
-"use client";
-
 import { DepartmentGrowthChart } from "@/features/chart/components/DepartmentGrowthChart";
 import { EmployeeCountChart } from "@/features/chart/components/EmployeeCountChart";
 import { GlobalFilters } from "@/features/filters/components/GlobalFilters";
