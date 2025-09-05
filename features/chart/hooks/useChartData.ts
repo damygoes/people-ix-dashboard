@@ -3,7 +3,7 @@ import { FilterState, useFilterStore } from "@/features/filters/store"
 import { useEffect, useMemo } from "react"
 import { useChartStore } from "../store"
 
-// Infer tRPC chart query keys automatically
+// automatically infer query keys for charts directly from tRPC
 type ChartQueryKey = keyof typeof api.chart
 
 export const useChartData = (
@@ -28,24 +28,29 @@ export const useChartData = (
     const { data, error, isLoading, refetch } = api.chart[queryKey].useQuery(
         mergedFilters,
         {
-            staleTime: 30_000, // 30 seconds
+            staleTime: 300_000, // 5 minutes
             gcTime: 300_000, // 5 minutes
             refetchOnWindowFocus: false,
         }
     )
+
+    const formattedError = error
+        ? "Could not load chart data. Please try again later."
+        : undefined
 
     // Keep Zustand in sync with tRPC
     useEffect(() => {
         setChartLoading(chartId, isLoading)
 
         if (error) {
-            setChartError(chartId, error.message)
+            console.error(`Error loading chart data for ${chartId}:`, error)
+            setChartError(chartId, formattedError ?? "An unknown error occurred.")
         }
 
         if (data) {
             updateChartData(chartId, data.data)
         }
-    }, [chartId, data, error, isLoading, setChartError, setChartLoading, updateChartData])
+    }, [chartId, data, error, isLoading, setChartError, setChartLoading, updateChartData, formattedError])
 
     return {
         data: chartState?.data ?? null,
