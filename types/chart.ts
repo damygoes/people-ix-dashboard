@@ -1,5 +1,25 @@
 import { FilterInput } from "./filter"
 
+export interface EmployeeCountDataset {
+    department: string
+    count: number
+}
+
+export interface DepartmentGrowthDataset {
+    month: string // YYYY-MM
+    department: string
+    employees: number
+}
+
+export interface DatasetResponse<T> {
+    data: T[]
+    metadata: {
+        totalRecords: number
+        appliedFilters: FilterInput
+        generatedAt: string
+    }
+}
+
 export type ChartData = {
     labels: string[]
     datasets: {
@@ -13,14 +33,4 @@ export type ChartData = {
     }[]
 }
 
-export interface ChartResponse {
-    data: ChartData
-    metadata: {
-        totalRecords: number
-        appliedFilters: FilterInput
-        generatedAt: string
-        chartType: ChartType
-    }
-}
-
-export type ChartType = 'bar' | 'line' | 'pie'
+export type ChartType = "bar" | "line" | "pie"

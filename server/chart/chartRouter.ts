@@ -1,6 +1,6 @@
 import { EmployeeRepository } from '../employee/employeeRepository'
+import { FilterSchema } from '../filter/filterSchema'
 import { procedure, trpcRouter } from '../trpc'
-import { FilterSchema } from './chartSchema'
 import { ChartService } from './chartService'
 
 export const chartRouter = trpcRouter({

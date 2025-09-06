@@ -15,7 +15,6 @@ interface ChartState {
 
 interface ChartStore {
     charts: ChartState
-
     initChart: (chartId: string) => void
     updateChartData: (chartId: string, data: ChartData) => void
     setChartLoading: (chartId: string, loading: boolean) => void

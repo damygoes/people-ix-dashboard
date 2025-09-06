@@ -1,4 +1,4 @@
-import type { FilterInput } from "@/types/chart"
+import type { FilterInput } from "@/types/filter"
 import { debounce } from "lodash"
 import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
