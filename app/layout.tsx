@@ -1,4 +1,5 @@
-import QueryProvider from "@/app/_trpc/QueryProvider";
+
+import QueryProvider from "@/lib/trpc/QueryProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";

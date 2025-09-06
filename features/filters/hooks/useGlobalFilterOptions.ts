@@ -1,4 +1,4 @@
-import { trpc as api } from "@/app/_trpc/trpcClient"
+import { trpc as api } from "@/lib/trpc/trpcClient"
 import { useEffect } from "react"
 import { useFilterStore } from "../store"
 

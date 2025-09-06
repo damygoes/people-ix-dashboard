@@ -1,10 +1,10 @@
 "use client"
 
-import { MultiSelect, type MultiSelectOption } from "@/components/multi-select/MultiSelect"
 import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useFilterStore } from "@/features/filters/store"
 import { FC, useMemo } from "react"
+import { MultiSelect, type MultiSelectOption } from "./multi-select/MultiSelect"
 
 export interface DepartmentOption extends MultiSelectOption<string> { }
 

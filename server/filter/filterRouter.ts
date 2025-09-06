@@ -1,6 +1,6 @@
-import { EmployeeRepository } from "../repositories/employeeRepository"
-import { FilterService } from "../services/filterService"
+import { EmployeeRepository } from "../employee/employeeRepository"
 import { procedure, trpcRouter } from "../trpc"
+import { FilterService } from "./filterService"
 
 
 export const filterRouter = trpcRouter({

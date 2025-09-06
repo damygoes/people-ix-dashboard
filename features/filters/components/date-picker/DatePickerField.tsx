@@ -1,5 +1,5 @@
-import { DatePicker } from "@/components/date-picker/DatePicker";
 import { Label } from "@/components/ui/label";
+import { DatePicker } from "@/features/filters/components/date-picker/DatePicker";
 import { useFilterStore } from "@/features/filters/store";
 import { format, parseISO } from "date-fns";
 import { FC } from "react";

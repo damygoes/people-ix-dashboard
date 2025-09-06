@@ -1,5 +1,5 @@
-import { trpc as api } from "@/app/_trpc/trpcClient"
 import { FilterState, useFilterStore } from "@/features/filters/store"
+import { trpc as api } from "@/lib/trpc/trpcClient"
 import { useEffect, useMemo } from "react"
 import { useChartStore } from "../store"
 

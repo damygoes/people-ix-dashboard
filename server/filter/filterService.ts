@@ -1,5 +1,5 @@
-import type { FilterInput } from '@/types/chart'
-import { EmployeeRepository } from '../repositories/employeeRepository'
+import type { FilterInput } from '@/types/filter'
+import { EmployeeRepository } from '../employee/employeeRepository'
 
 export class FilterService {
     constructor(private employeeRepository: EmployeeRepository) { }

@@ -1,5 +1,5 @@
-import type { MultiSelectOption } from "@/components/multi-select/MultiSelect"
 import { useFilterStore } from "@/features/filters/store"
+import { MultiSelectOption } from "../components/multi-select/MultiSelect"
 
 interface FilterOptions {
     departments?: MultiSelectOption<string>[]

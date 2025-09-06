@@ -8,7 +8,7 @@ import { FC } from "react"
 import { toast } from "sonner"
 import { useGlobalFilterOptions } from "../hooks/useGlobalFilterOptions"
 import { useFilterStore } from "../store"
-import { DatePickerField } from "./DatePickerField"
+import { DatePickerField } from "./date-picker/DatePickerField"
 import { DepartmentSelect } from "./DepartmentSelect"
 import { LocationSelect } from "./LocationSelect"
 

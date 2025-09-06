@@ -1,5 +1,6 @@
-import type { ChartData, ChartResponse, FilterInput } from "@/types/chart"
-import { EmployeeRepository } from "../repositories/employeeRepository"
+import type { ChartData, ChartResponse } from "@/types/chart"
+import type { FilterInput } from "@/types/filter"
+import { EmployeeRepository } from "../employee/employeeRepository"
 
 export class ChartService {
     constructor(private employeeRepository: EmployeeRepository) { }

@@ -3,10 +3,6 @@ import { initTRPC } from '@trpc/server'
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
 import { ZodError } from 'zod'
 
-interface CreateContextOptions {
-    // could probably authenticate users here in the future
-}
-
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     return {
         prisma,

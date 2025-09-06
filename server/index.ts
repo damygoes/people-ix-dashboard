@@ -1,6 +1,6 @@
 
-import { chartRouter } from "./routers/chart";
-import { filterRouter } from "./routers/filter";
+import { chartRouter } from "./chart/chartRouter";
+import { filterRouter } from "./filter/filterRouter";
 import { trpcRouter } from "./trpc";
 
 export const appRouter = trpcRouter({

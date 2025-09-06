@@ -1,6 +1,6 @@
-import { MultiSelect, type MultiSelectOption } from "@/components/multi-select/MultiSelect"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MultiSelect, type MultiSelectOption } from "@/features/filters/components/multi-select/MultiSelect"
 import type { ChartData } from "@/types/chart"
 import { RefreshCw, X } from "lucide-react"
 import { ReactNode } from "react"
@@ -85,8 +85,8 @@ function LocalFiltersSection({
                                         : filter.options.filter((opt) => opt.value === selectedValues)
                                 }
                                 options={filter.options}
-                                onChange={(opts) =>
-                                    updateFilter(filter.key, opts.map((o) => o.value))
+                                onChange={(options) =>
+                                    updateFilter(filter.key, options.map((option) => option.value))
                                 }
                                 placeholder={filter.placeholder ?? `Select ${filter.label}`}
                                 enableSelectAll

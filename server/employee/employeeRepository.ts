@@ -1,5 +1,5 @@
 import { prisma } from '@/prisma/db'
-import type { FilterInput } from '@/types/chart'
+import type { FilterInput } from '@/types/filter'
 
 export class EmployeeRepository {
     async findByFilters(filters: FilterInput) {

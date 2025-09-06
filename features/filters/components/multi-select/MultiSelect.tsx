@@ -1,10 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { Check } from "lucide-react"
 import { ReactNode, useCallback, useState } from "react"
-import { Button } from "../ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 
 export type MultiSelectOption<TValue = string> = {
     value: TValue
