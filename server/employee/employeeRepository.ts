@@ -1,4 +1,3 @@
-// src/server/employee/employeeRepository.ts
 import type { FilterInput } from '@/types/filter'
 import type { Prisma, PrismaClient } from '@prisma/client'
 
@@ -20,8 +19,8 @@ export class EmployeeRepository {
 
         if (filters.location?.length) {
             // ignore a sentinel like "all" if you use it in the UI
-            const locs = filters.location.filter((l) => l !== 'all')
-            if (locs.length) where.location = { in: locs }
+            const locations = filters.location.filter((location) => location !== 'all')
+            if (locations.length) where.location = { in: locations }
         }
 
         return where
@@ -51,8 +50,8 @@ export class EmployeeRepository {
         ])
 
         return {
-            departments: departments.map((d) => ({ value: d.department, label: d.department })),
-            locations: locations.map((l) => ({ value: l.location, label: l.location })),
+            departments: departments.map((dept) => ({ value: dept.department, label: dept.department })),
+            locations: locations.map((loc) => ({ value: loc.location, label: loc.location })),
             dateRange: {
                 min: dateRange._min.hireDate?.toISOString().split('T')[0] ?? '',
                 max: dateRange._max.hireDate?.toISOString().split('T')[0] ?? '',
