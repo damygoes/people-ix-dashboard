@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Interactive Dashboard
 
-## Getting Started
+An analytics dashboard built with **Next.js, TypeScript, tRPC, Prisma, Zustand, and Chart.js**, as a solution to the PeopleIX case study challenge.
 
-First, run the development server:
+## 🏗️ Architecture Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Presentation Layer**  
+  React components, chart containers, and filter UIs. State managed via Zustand for granular subscriptions.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Application Layer**  
+  tRPC API with type-safe contracts. Transformers convert backend datasets into Chart.js-ready structures.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Data Access Layer**  
+  Repository pattern using Prisma ORM with PostgreSQL backend.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📊 Data Flow
 
-## Learn More
+1. User selects filters (global or per-chart).  
+2. Zustand syncs filters with URL state for shareability.  
+3. Charts fetch raw datasets via tRPC.  
+4. Transformers convert raw data into `ChartData` (Chart.js).  
+5. ChartFactory applies strategy pattern for rendering chart types.  
 
-To learn more about Next.js, take a look at the following resources:
+## ✅ Design Decisions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Zustand over Context/Redux**: minimal re-renders, simpler API.  
+- **Transformers**: backend returns datasets, frontend shapes them for flexibility.  
+- **Repository Pattern**: clean separation of queries and business logic.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Future Considerations
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Add more chart types (scatter, radar, doughnut).  
+- Extend filters (e.g., salary ranges, performance scores).  
+- Introduce caching layers or server-side rendering for large datasets.  
