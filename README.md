@@ -1,34 +1,70 @@
 # Interactive Dashboard
 
-An analytics dashboard built with **Next.js, TypeScript, tRPC, Prisma, Zustand, and Chart.js**, as a solution to the PeopleIX case study challenge.
+An interactive analytics dashboard built with **Next.js, TypeScript, tRPC, Prisma, Zustand, and Chart.js**, as a solution to the PeopleIX case study challenge.
+
+---
 
 ## 🏗️ Architecture Overview
 
-- **Presentation Layer**  
-  React components, chart containers, and filter UIs. State managed via Zustand for granular subscriptions.  
+### Presentation Layer (Frontend)
+- **Views**: React components (ChartCard, ChartContainer, Filters)  
+- **View Models**:  
+  - Hooks (`useChartData`, `useUrlState`) orchestrate data fetching and state  
+  - Transformers convert raw datasets → Chart.js-ready `ChartData`  
+  - ChartFactory applies the Strategy Pattern for different chart types  
+- **State Management**: Zustand stores for global filters, chart state, and local overrides  
 
-- **Application Layer**  
-  tRPC API with type-safe contracts. Transformers convert backend datasets into Chart.js-ready structures.  
+### Application Layer (Backend)
+- **tRPC Routers** (`chart`, `filter`) provide type-safe endpoints  
+- **Services** (`ChartService`, `FilterService`) implement business logic  
+- **Zod Schemas** validate input/output  
 
-- **Data Access Layer**  
-  Repository pattern using Prisma ORM with PostgreSQL backend.  
+### Data Access Layer (Backend)
+- **Repositories** (`EmployeeRepository`) encapsulate Prisma queries  
+- **Prisma ORM** as the database abstraction  
+- **PostgreSQL** as the persistent store  
+
+---
 
 ## 📊 Data Flow
 
-1. User selects filters (global or per-chart).  
-2. Zustand syncs filters with URL state for shareability.  
-3. Charts fetch raw datasets via tRPC.  
-4. Transformers convert raw data into `ChartData` (Chart.js).  
-5. ChartFactory applies strategy pattern for rendering chart types.  
+1. User updates filters in the UI (global or local).  
+2. Zustand updates global/local filter state and syncs it to the URL (**debounced**).  
+3. Chart hooks (`useChartData`) merge filters and trigger **tRPC queries**.  
+4. Routers → Services → Repositories → Prisma → PostgreSQL.  
+5. Backend returns `DatasetResponse<T>` (raw rows + metadata).  
+6. Transformers convert datasets into **Chart.js-ready `ChartData`**.  
+7. ChartFactory generates the correct **Chart.js config** (bar, line, pie).  
+8. ChartContainer renders via **chart.js**.  
 
-## ✅ Design Decisions
+---
 
-- **Zustand over Context/Redux**: minimal re-renders, simpler API.  
-- **Transformers**: backend returns datasets, frontend shapes them for flexibility.  
-- **Repository Pattern**: clean separation of queries and business logic.  
+## ✅ Key Design Choices
+
+- **State Management (Zustand)**  
+  - Fine-grained subscriptions → minimal re-renders  
+  - Global + local filter hierarchy  
+
+- **Dataset Transformers**  
+  - Backend stays focused on raw data  
+  - Frontend controls visualization details  
+
+- **Repository Pattern**  
+  - Keeps Prisma isolated  
+  - Easier to test and extend  
+
+- **ChartFactory (Strategy Pattern)**  
+  - Extensible: add new chart types by implementing a new strategy  
+  - Clean separation of chart config from chart rendering  
+
+- **Query Persistence**  
+  - **Debounce**: prevents excessive URL/history updates on rapid filter changes  
+  - **URL sync**: enables shareable and restorable dashboard state  
+
+---
 
 ## 🚀 Future Considerations
 
 - Add more chart types (scatter, radar, doughnut).  
 - Extend filters (e.g., salary ranges, performance scores).  
-- Introduce caching layers or server-side rendering for large datasets.  
+- Explore caching or SSR for very large datasets.  
