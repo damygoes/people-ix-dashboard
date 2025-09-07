@@ -22,6 +22,8 @@ const trpc = initTRPC.context<Context>().create({
             message: 'Something went wrong. Please try again.',
             data: {
                 code: shape.data.code,
+                zodError,
+                debugMessage: error.message,   // dev debugging
             },
         }
     },
@@ -38,6 +40,7 @@ const logErrors = trpc.middleware(async ({ path, type, next, ctx }) => {
                 code: result.error.code,
                 message: result.error.message,
                 ua: ctx.req.headers['user-agent'],
+                data: (result.error as any)?.data, // also log attached debug data
             })
         }
         return result

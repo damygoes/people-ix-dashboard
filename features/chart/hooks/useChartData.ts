@@ -57,7 +57,6 @@ export function useChartData(
     const { data, error, isLoading, refetch } = useChartQuery(queryKey, mergedFilters, opts)
     // Normalized error message 
     const errorMessage = (error as { message?: string } | undefined)?.message
-    console.log("error message:", errorMessage)
 
     useEffect(() => {
         setChartLoading(chartId, isLoading)
